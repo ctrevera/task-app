@@ -17,25 +17,11 @@ const InnerList = React.memo(({ column, taskMap, index }) => {
 const DragAndDrop = () => {
     const [state, setState] = useState(initialData);
 
-    const onDragStart = useCallback((start, provided) => {
-        provided.announce(`You have lifted the task in position ${start.source.index + 1}`);
-    }, []);
+    const onDragStart = useCallback(() => { }, []);
 
-    const onDragUpdate = useCallback((update, provided) => {
-        const message = update.destination
-            ? `You have moved the task to position ${update.destination.index + 1}`
-            : `You are currently not over a droppable area`;
-        provided.announce(message);
-    }, []);
+    const onDragUpdate = useCallback(() => { }, []);
 
-    const onDragEnd = useCallback((result, provided) => {
-        const message = result.destination
-            ? `You have moved the task from position
-        ${result.source.index + 1} to ${result.destination.index + 1}`
-            : `The task has been returned to its starting position of
-        ${result.source.index + 1}`;
-        provided.announce(message);
-
+    const onDragEnd = useCallback((result) => {
         const { destination, source, draggableId, type } = result;
 
         if (!destination) {
